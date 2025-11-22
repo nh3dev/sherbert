@@ -2,7 +2,7 @@
 <include "header.html">
 
 <div style="position:relative;display:inline-block;">
-<img src="shark.png" style="position:absolute;"/>
+<img src="shard/shark.png" style="position:absolute;"/>
 <div style="padding-left:9px;">
 
 **Shard** - "The OSR of programming languages" *~~is this even a good quote?~~*
@@ -11,8 +11,8 @@
 </div>
 
 [github](https://github.com/nh3dev/sharc)&nbsp; 
-[docs](shard-docs)&nbsp; 
-[examples](shard-examples)
+[docs](shard/docs)&nbsp; 
+[examples](shard/examples)
 
 ## Premise
 Simple, pragmatic, and non-opinionated functional flavoured imperative language.  

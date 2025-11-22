@@ -7,7 +7,7 @@ If you'd like to help out let us know in the [Discord](https://discord.gg/f5FVgr
 
 The docs are split into the following sections:
 - ~~Specification~~ - The exact language spec.
-- [Examples](/docs/examples) - List of code snippets, showcasing syntax and features.
-- ~~Guide~~ - The basics to get started with **Shard** and `sharc`.
+- [Examples](examples) - List of code snippets, showcasing syntax and features.
+- ~~Guide~~ - The basics to get started with **Shard**, `sharc`, and `miri`.
 
 <include "footer.html">
