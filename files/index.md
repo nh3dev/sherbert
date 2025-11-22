@@ -36,15 +36,4 @@ Membership means you get a few cool perks:
 - ability to add new blog posts to our [/blog](/blog) page
 - member role on our [Discord](https://discord.gg/f5FVgr7gxX)
 
-<!-- 
-Membership means you get a few cool perks: namely,
-you get to post to mailing lists without post review
-(see: [/community](/community) for details regarding mailing lists).
-You also get a brand new, shiny `@nh3.dev` email with a username of your
-choice, as well as push access to our git repositories, without having
-to push every change via the `patch` list. Of course, when you deem it
-necessary, such as when making large changes, you should still send it in
-via the `patch` list for us to all take a peek and discuss.
--->
-
 <include "footer.html">
