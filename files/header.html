@@ -9,10 +9,30 @@
       <div class=dropdown>
          <button>Theme</button>
          <div class="dropdown-content">
-            <a href="?t=nord">nord</a>
-            <a href="?t=gruvbox">gruvbox</a>
-            <a href="?t=classic">classic</a>
+            <a href="?t=nord"    onclick="set_theme('nord')">nord</a>
+            <a href="?t=gruvbox" onclick="set_theme('gruvbox')">gruvbox</a>
+            <a href="?t=classic" onclick="set_theme('classic')">classic</a>
          </div>
       </div>
    </div>
 </header>
+
+<script>
+	const set_theme = (name) => 
+		document.cookie = `t=${name}; path=/; max-age=31536000`;
+
+	// set current ?t= tag to the last chosen theme
+	window.addEventListener("load", () => {
+		if (new URLSearchParams(window.location.search).get('t')) return;
+		if (!document.cookie) return;
+
+		const theme = document.cookie.split('; ')
+			.find(c => c.startsWith('t'))
+			.split('=')[1];
+
+		const url = new URL(window.location);
+		url.searchParams.set("t", theme);
+		window.location.replace(url);
+	});
+</script>
+
