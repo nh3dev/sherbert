@@ -22,7 +22,7 @@ Simple, pragmatic, and non-opinionated functional flavoured imperative language.
 // pretty average language :p
 let average = |a: &[u32]|: u32 {
 	loop let (sum, i) = (0, 0) {
-		if i == a.len: break sum;
+		if i == a.len => break sum;
 		(sum + a[i], i + 1)
 	} / a.len
 };
