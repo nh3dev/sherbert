@@ -51,7 +51,7 @@ contexts:
     - match: ([A-Z][a-z]+(?:[A-Z][a-z]+)*)
       scope: entity.type.named
 
-    - match: 'usize|isize|(u\d+)|(b\d+)|(i\d+)|void|never'
+    - match: 'usize|isize|u\d+|b\d+|i\d+'
       scope: entity.type
 
     - match: '\b[A-Z]\b'
