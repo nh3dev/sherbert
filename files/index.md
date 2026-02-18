@@ -10,10 +10,17 @@ small, tightly knit and partially guarded group which lends itself
 to nice, *real* interaction. You can become a part of **nh3** too!
 
 ## Community
-Currently there are a few ways to join us, such as
-[Discord](https://discord.gg/f5FVgr7gxX), and more recently, a self hosted matrix instance! There you can get a feel for
-what the **Free Ammonia Foundation** is about -- we would love for you to
-pop in, discuss, chat, and become part of our little corner of the internet!
+Currently there are a few ways to join us, such as [Discord](https://discord.gg/f5FVgr7gxX),
+and more recently, a self hosted [Matrix Room](https://matrix.to/#/#general:nh3.dev)!
+There you can get a feel for what the **Free Ammonia Foundation** is about -- we would
+love for you to pop in, discuss, chat, and become part of our little corner of the internet!
+
+## Blog
+We host a public blog on **nh3**, meaning anyone can (and is highly encouraged) write and post!
+As long as we think it's even slightly worthwhile we'll merge it into this site.
+Simply make a PR to the [sherbert repo](https://github.com/nh3dev/sherbert)
+or ask us on [Discord](https://discord.gg/f5FVgr7gxX)!  
+Changes usually take effect within ~10min after being approved.
 
 ## Projects
 Our flagship project is [shard](/projects/shard) -- a simple, pragmatic, 
@@ -31,9 +38,8 @@ the community, and we get the right kind of vibes, *we* will extend you an
 invitation to officially join us.
 
 Membership means you get a few cool perks:
-- brand new, shiny `@nh3.dev` email with a username of your choice
+- brand new, shiny `nh3.dev` matrix account with a username of your choice
 - access to create git repositories under `github.com/nh3dev`
-- ability to add new blog posts to our [/blog](/blog) page
 - member role on our [Discord](https://discord.gg/f5FVgr7gxX)
 
 <include "footer.html">

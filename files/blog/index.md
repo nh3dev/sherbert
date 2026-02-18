@@ -8,6 +8,7 @@ Changes usually take effect within ~10min after being approved.
 
 ## Posts
 * [Latest](/blog/01-hiatus)
+* [18-02-2026 - Matrix](/blog/02-matrix)
 * [21-11-2025 - Hiatus](/blog/01-hiatus)
 
 <include "footer.html">
