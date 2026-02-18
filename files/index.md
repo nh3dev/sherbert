@@ -11,7 +11,7 @@ to nice, *real* interaction. You can become a part of **nh3** too!
 
 ## Community
 Currently there are a few ways to join us, such as
-[Discord](https://discord.gg/f5FVgr7gxX) (where you can get a feel for
+[Discord](https://discord.gg/f5FVgr7gxX), and more recently, a self hosted matrix instance! There you can get a feel for
 what the **Free Ammonia Foundation** is about -- we would love for you to
 pop in, discuss, chat, and become part of our little corner of the internet!
 
