@@ -1,9 +1,7 @@
 <link href="/style/style.css" rel="stylesheet"/>
 <include "header.html">
 
-Author: Anthony Slab - **FAF** founder
-
-# 21-11-2025 - Hiatus
+<blog-header "Hiatus", "Anthony Slab", "21-11-2025">
 
 Perhaps not the most exhilarating news to read in our inaugural blog post;
 I quit programming. Most definitely not forever but at least for the foreseeable future.

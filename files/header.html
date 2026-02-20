@@ -1,23 +1,24 @@
 <header>
-   <div class=navbar>
-      <a href="/">Home</a>
-      <a href="/projects">Projects</a>
-      <a href="/rocks">Rocks</a>
-      <a href="/blog">Blog</a>
+	<div class=navbar>
+		<a href="/">Home</a>
+		<a href="/projects">Projects</a>
+		<a href="/rocks">Rocks</a>
+		<a href="/blog">Blog</a>
 
-      <div class=dropdown>
-         <button>Theme</button>
-         <div class="dropdown-content">
-            <a href="?t=nord"    onclick="set_theme('nord')">nord</a>
-            <a href="?t=gruvbox" onclick="set_theme('gruvbox')">gruvbox</a>
-            <a href="?t=classic" onclick="set_theme('classic')">classic</a>
-         </div>
-      </div>
-   </div>
+		<div class=dropdown>
+			<button>Theme</button>
+			<div class="dropdown-content">
+				<a href="?t=nord"    onclick="set_theme('nord')">nord</a>
+				<a href="?t=gruvbox" onclick="set_theme('gruvbox')">gruvbox</a>
+				<a href="?t=classic" onclick="set_theme('classic')">classic</a>
+			</div>
+		</div>
+	</div>
 </header>
 
+<!-- I'm sorry, maj made me do this -->
 <script>
-	const set_theme = (name) => 
+	const set_theme = (name) =>
 		document.cookie = `t=${name}; path=/; max-age=31536000`;
 
 	// set current ?t= tag to the last chosen theme
@@ -34,4 +35,3 @@
 		window.location.replace(url);
 	});
 </script>
-

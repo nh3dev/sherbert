@@ -1,9 +1,7 @@
 <link href="/style/style.css" rel="stylesheet"/>
 <include "header.html">
 
-Author: Anthony Slab - **FAF** founder
-
-# 18-02-2026 - Matrix
+<blog-header "Matrix", "Anthony Slab", "18-02-2026">
 
 We have finally decided to host an **nh3** branded matrix instance!
 I hope this comes as an appreciates change especially given the current, at best *shaky*,

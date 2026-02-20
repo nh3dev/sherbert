@@ -8,23 +8,32 @@ use syntect::parsing::{SyntaxSetBuilder, Scope, ScopeStack};
 
 use regex::{Regex, Captures};
 
+use std::borrow::Cow;
 use std::collections::BTreeMap;
 use std::sync::{LazyLock, OnceLock};
 
 use std::fs;
 use std::path::{Path, PathBuf};
-use std::io::Write;
+use std::io::Write as _;
+use std::fmt::Write as _;
 
 // workaround since syntax is loaded in a static and I cant be bothered to move it
 static SYNTAX_DIR: OnceLock<PathBuf> = OnceLock::new();
 
 pub fn generate(src: &Path, dst: &Path, syntax: PathBuf) {
+	static BLOG_ENTRY_RE: LazyLock<Regex> = LazyLock::new(|| Regex::new(r#"<blog-header "(.*)", "(.*)", "(.*)">"#).unwrap());
+	static INCLUDE_RE: LazyLock<Regex> = LazyLock::new(|| Regex::new(r#"<include "(.*)">"#).unwrap());
+
 	SYNTAX_DIR.get_or_init(|| syntax);
 
-	let includes = |str: &str| {
-		static RE: LazyLock<Regex> = LazyLock::new(|| Regex::new(r#"<include "(.*)">"#).unwrap());
-		format!("{}\n", RE.replace_all(str, |c: &Captures| 
-			fs::read_to_string(src.join(&c[1])).unwrap()))
+	let resolve_macros = |mut input: String| {
+		let f  = |c: &Captures| fs::read_to_string(src.join(&c[1])).unwrap();
+		if let Cow::Owned(s) = INCLUDE_RE.replace_all(&input, f) { input = s; }
+
+		let f  = |c: &Captures| format!(r#"<div class="blog-header"><h2>{}</h2><p>by {}</b><p class="blog-date">{}</p></div>"#, &c[1], &c[2], &c[3]);
+		if let Cow::Owned(s) = BLOG_ENTRY_RE.replace_all(&input, f) { input = s; }
+
+		input
 	};
 
 	let options = Options {
@@ -58,32 +67,75 @@ pub fn generate(src: &Path, dst: &Path, syntax: PathBuf) {
 	};
 
 	if dst.exists() { 
-		fs::remove_dir_all(&*dst).unwrap(); 
+		fs::remove_dir_all(dst).unwrap(); 
 	}
 
-	fs::create_dir(&*dst).unwrap();
+	fs::create_dir(dst).unwrap();
 
-	for entry in walkdir::WalkDir::new(&*src) {
-		let entry = entry.unwrap();
-		let path = entry.path();
+	let blog_dir = src.join("blog");
 
-		if path.is_dir() { continue; }
+	walkdir::WalkDir::new(src).into_iter()
+		.filter_map(Result::ok).filter(|e| !e.path().is_dir()).for_each(|e| {
+			let path = e.path();
+			let dest = dst.join(path.iter().skip(1).collect::<PathBuf>());
 
-		let dest = dst.join(path.iter().skip(1).collect::<PathBuf>());
+			if path.starts_with(&blog_dir) { return; }
 
-		match path.extension().and_then(|s| s.to_str()) {
-			Some("md")   => mkfile(&dest.with_extension("html")).write_all(includes(&into_html(path)).as_bytes()),
-			Some("html") => mkfile(&dest).write_all(includes(&fs::read_to_string(path).unwrap()).as_bytes()),
-			_            => mkfile(&dest).write_all(&fs::read(path).unwrap()),
-		}.unwrap();
-	}
+			match path.extension().and_then(|s| s.to_str()) {
+				Some("md")   => mkfile(&dest.with_extension("html")).write_all(resolve_macros(into_html(path)).as_bytes()),
+				Some("html") => mkfile(&dest).write_all(resolve_macros(fs::read_to_string(path).unwrap()).as_bytes()),
+				_            => mkfile(&dest).write_all(&fs::read(path).unwrap()),
+			}.unwrap();
+		});
 
-	// println!("cargo:rerun-if-changed=files/");
+	let mut posts = std::fs::read_dir(&blog_dir).unwrap().filter_map(|e| {
+			let path = e.ok()?.path();
+
+			if path.file_name()? == "index.md" { return None; }
+
+			let content = std::fs::read_to_string(&path).ok()?;
+			let c = BLOG_ENTRY_RE.captures(&content)?;
+			let (name, auth, date) = (c[1].to_string(), c[2].to_string(), c[3].to_string());
+
+			let content = into_html(&path);
+			let newpath = dst.join(path.iter().skip(1).collect::<PathBuf>()).with_extension("html");
+			mkfile(&newpath).write_all(resolve_macros(content.clone()).as_bytes());
+
+			Some((content, name, auth, date, newpath))
+		}).collect::<Vec<_>>();
+
+	posts.sort_unstable_by_key(|(_, _, _, s, _)| {
+		let mut it = s.split("-");
+		(it.next().unwrap().parse::<u32>().unwrap(),
+			it.next().unwrap().parse::<u32>().unwrap(),
+			it.next().unwrap().parse::<u32>().unwrap())
+	});
+
+	let latest = posts.first().map_or_else(
+		||  String::from("<s>No posts found :(</s>"),
+		|p| INCLUDE_RE.replace_all(&p.0, |_: &Captures| "").into_owned());
+
+	let blog_list = {
+		let mut out = String::from("<div class=\"block\">");
+
+		posts.into_iter().for_each(|(_, name, _, date, path)| 
+			writeln!(out, "<p><a href=\"{}\">{name} - {date}</a></p>",
+				path.iter().skip(1).collect::<PathBuf>().display()).unwrap());
+
+		write!(out, "</div>");
+		out
+	};
+
+	let blog_idx = into_html(&blog_dir.join("index.md"))
+		.replacen("<latest>", &latest, 1)
+		.replacen("<allposts>", &blog_list, 1);
+
+	mkfile(&dbg!(dst.join("blog/index.html"))).write_all(resolve_macros(blog_idx).as_bytes());
 }
 
 fn parse_block<'a>(node: &'a AstNode<'a>) -> String {
 	let to_string = |node: &'a AstNode<'a>|
-	node.children().map(parse_block).collect();
+		node.children().map(parse_block).collect();
 
 	match node.data.borrow().value {
 		NodeValue::Heading(NodeHeading { level, ..}) => {
@@ -94,57 +146,48 @@ fn parse_block<'a>(node: &'a AstNode<'a>) -> String {
 		NodeValue::Table(..) => {
 			let mut out = String::from("<table>\n");
 
-			// Required as per GFM spec to not generate bodies
-			// when a table row hasn't been seen.
-
+			// Required as per GFM spec to not generate bodies when a table row hasn't been seen.
 			let mut seen_header = false;
 			let mut seen_body   = false;
 
 			for row in node.children() {
-				if let NodeValue::TableRow(header) = row.data.borrow().value {
-					if header && !seen_header {
-						out.push_str("<thead>\n");
-						seen_header = true;
-					}
-
-					if !seen_body && seen_header && !header {
-						out.push_str("</thead>\n");
-						out.push_str("<tbody>\n");
-						seen_body = true;
-					}
-
-					out.push_str("<tr>\n");
-
-					for cell in row.children() {
-						if let NodeValue::TableCell = cell.data.borrow().value {
-							let mut cell_str = to_string(cell);
-							
-							// Skip blank cells
-							// if cell_str.is_empty() { continue };
-
-							if header {
-								cell_str = format!("<th>{}</th>\n", cell_str);
-							} else {
-								cell_str = format!("<td>{}</td>\n", cell_str);
-							}
-
-							out.push_str(cell_str.as_str());
-						} else {
-							eprintln!("WARNING: expected only TableCells as direct children of TableRow!");
-						}
-					}
-
-					out.push_str("</tr>\n");
-				} else {
+				let NodeValue::TableRow(header) = row.data.borrow().value else {
 					eprintln!("WARNING: expected only TableRows as direct children of Table!");
+					continue;
+				};
+
+				if header && !seen_header {
+					writeln!(out, "<thead>");
+					seen_header = true;
 				}
+
+				if !seen_body && seen_header && !header {
+					writeln!(out, "</thead>\n<tbody>");
+					seen_body = true;
+				}
+
+				writeln!(out, "<tr>");
+
+				row.children().for_each(|cell| {
+					if !matches!(cell.data.borrow().value, NodeValue::TableCell) {
+						eprintln!("WARNING: expected only TableCells as direct children of TableRow!");
+						return;
+					}
+
+					match header {
+						true => writeln!(out, "<th>{}</th>", to_string(cell)),
+						_    => writeln!(out, "<td>{}</td>", to_string(cell)),
+					};
+				});
+
+				writeln!(out, "</tr>");
 			}
 
 			if !seen_body && seen_header {
-				out.push_str("</thead>\n");
+				writeln!(out, "</thead>");
 			}
 
-			out.push_str("</table>\n");
+			writeln!(out, "</table>\n");
 			out
 		},
 		// we are fancy and use em dashes, not just hyphens

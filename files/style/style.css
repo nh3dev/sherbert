@@ -209,3 +209,32 @@ code > pre {
 .dropdown:hover .dropdown-content {
 	display: block;
 }
+
+
+/* blog */
+.blog-header {
+	display: flex;
+	gap: 0.6em;
+
+	margin-top: 15px;
+	margin-bottom: 2px;
+	padding-top: 10px;
+
+	border-bottom: 2px solid var(--colour3);
+}
+
+.blog-header > h2 {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 2px;
+}
+
+.blog-header > p {
+	margin: 0;
+	padding: 0;
+	padding-top: 4px;
+}
+
+.blog-date {
+	margin-left: auto !important;
+}

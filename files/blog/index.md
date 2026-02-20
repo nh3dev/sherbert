@@ -6,9 +6,10 @@ Simply make a PR to the [sherbert repo](https://github.com/nh3dev/sherbert)
 or ask us on [Discord](https://discord.gg/f5FVgr7gxX)!  
 Changes usually take effect within ~10min after being approved.
 
-## Posts
-* [Latest](/blog/01-hiatus)
-* [18-02-2026 - Matrix](/blog/02-matrix)
-* [21-11-2025 - Hiatus](/blog/01-hiatus)
+<latest>
+
+# All Posts
+
+<allposts>
 
 <include "footer.html">
