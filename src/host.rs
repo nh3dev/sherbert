@@ -20,7 +20,7 @@ impl foxhole::TypeCacheKey for Config {
 }
 
 pub fn host(root: PathBuf, addr: &str, theme: String) {
-	fn get_theme<'a>(HeaderMap(ref headers): &'a HeaderMap<'a>) -> Option<&'a str> {
+	fn get_theme<'a>(HeaderMap(headers): &'a HeaderMap<'a>) -> Option<&'a str> {
 		headers.get("referer")
 			.and_then(|u| u.to_str().ok())
 			.and_then(|u| u.split_once("?t=").map(|s| s.1))
