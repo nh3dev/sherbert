@@ -111,11 +111,14 @@ pub fn generate(src: &Path, dst: &Path, syntax: PathBuf) {
 			it.next().unwrap().parse::<u32>().unwrap())
 	});
 
-	let latest = posts.first().map_or_else(
-		||  String::from("<s>No posts found :(</s>"),
+	let latest = posts.first().map_or_else(String::new, 
 		|p| INCLUDE_RE.replace_all(&p.0, |_: &Captures| "").into_owned());
 
-	let blog_list = {
+	let blog_list = (move || {
+		if posts.is_empty() {
+			return String::from("<s>No posts found :(</s>");
+		}
+
 		let mut out = String::from("<div class=\"block\">");
 
 		posts.into_iter().for_each(|(_, name, _, date, path)| 
@@ -124,13 +127,13 @@ pub fn generate(src: &Path, dst: &Path, syntax: PathBuf) {
 
 		write!(out, "</div>");
 		out
-	};
+	})();
 
 	let blog_idx = into_html(&blog_dir.join("index.md"))
 		.replacen("<latest>", &latest, 1)
 		.replacen("<allposts>", &blog_list, 1);
 
-	mkfile(&dbg!(dst.join("blog/index.html"))).write_all(resolve_macros(blog_idx).as_bytes());
+	mkfile(&dst.join("blog/index.html")).write_all(resolve_macros(blog_idx).as_bytes());
 }
 
 fn parse_block<'a>(node: &'a AstNode<'a>) -> String {
