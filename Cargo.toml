@@ -17,10 +17,12 @@ comrak = { version = "0.39", default-features = false, features = ["syntect"] }
 regex = "1.11"
 syntect = "5.2"
 walkdir = "2.5"
+katex-rs = "0.2"
+chrono = "0.4"
 
 [profile.release]
 lto = true
 panic = "abort"
-opt-level = "z"
+opt-level = "s"
 debug = false
 codegen-units = 1

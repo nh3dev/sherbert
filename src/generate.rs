@@ -1,12 +1,14 @@
 use comrak::{parse_document, Arena, Options};
 use comrak::adapters::SyntaxHighlighterAdapter;
-use comrak::nodes::{AstNode, NodeCode, NodeCodeBlock, NodeValue, NodeHtmlBlock, NodeHeading, NodeLink, NodeList};
+use comrak::nodes::{AstNode, NodeCode, NodeCodeBlock, NodeHeading, NodeHtmlBlock, NodeLink, NodeList, NodeMath, NodeValue};
 use comrak::plugins::syntect::{SyntectAdapter, SyntectAdapterBuilder};
 
 use syntect::highlighting::{ThemeSet, Theme, ThemeSettings, ThemeItem, ScopeSelector, ScopeSelectors, StyleModifier, Color, FontStyle};
 use syntect::parsing::{SyntaxSetBuilder, Scope, ScopeStack};
 
 use regex::{Regex, Captures};
+
+use katex::{KatexContext, Settings};
 
 use std::borrow::Cow;
 use std::collections::BTreeMap;
@@ -104,14 +106,10 @@ pub fn generate(src: &Path, dst: &Path, syntax: PathBuf) {
 			Some((content, name, auth, date, newpath))
 		}).collect::<Vec<_>>();
 
-	posts.sort_unstable_by_key(|(_, _, _, s, _)| {
-		let mut it = s.split("-");
-		(it.next().unwrap().parse::<u32>().unwrap(),
-			it.next().unwrap().parse::<u32>().unwrap(),
-			it.next().unwrap().parse::<u32>().unwrap())
-	});
+	posts.sort_unstable_by_key(|(_, _, _, s, _)| 
+		chrono::NaiveDate::parse_from_str(s, "%d-%m-%Y").unwrap());
 
-	let latest = posts.first().map_or_else(String::new, 
+	let latest = posts.last().map_or_else(String::new, 
 		|p| INCLUDE_RE.replace_all(&p.0, |_: &Captures| "").into_owned());
 
 	let blog_list = (move || {
@@ -121,7 +119,7 @@ pub fn generate(src: &Path, dst: &Path, syntax: PathBuf) {
 
 		let mut out = String::from("<div class=\"block\">");
 
-		posts.into_iter().for_each(|(_, name, _, date, path)| 
+		posts.into_iter().rev().for_each(|(_, name, _, date, path)| 
 			writeln!(out, "<p><a href=\"{}\">{name} - {date}</a></p>",
 				path.iter().skip(1).collect::<PathBuf>().display()).unwrap());
 
@@ -229,8 +227,22 @@ fn parse_block<'a>(node: &'a AstNode<'a>) -> String {
 			);
 
 			format!("<code><pre>\n{str}</pre></code>\n")
-		}
+		},
+		NodeValue::Math(NodeMath { ref literal, .. }) => {
+			static KATEX_CTX: LazyLock<KatexContext> = LazyLock::new(KatexContext::default);
 
+			let settings = Settings::builder()
+				.output(katex::OutputFormat::Mathml)
+				.display_mode(false)
+				.build();
+
+			let out = katex::render_to_string(&*KATEX_CTX, literal, &settings).unwrap_or_else(|e| {
+				eprintln!("Failed to render math: {e}");
+				format!("${literal}$")
+			});
+
+			format!("{out}\n")
+		},
 		_ => to_string(node),
 	}
 }
