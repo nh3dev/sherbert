@@ -81,7 +81,7 @@ pub fn generate(src: &Path, dst: &Path, syntax: PathBuf) {
 			let path = e.path();
 			let dest = dst.join(path.iter().skip(1).collect::<PathBuf>());
 
-			if path.starts_with(&blog_dir) { return; }
+			if path.starts_with(&blog_dir) && e.file_name() == "assets" { return; }
 
 			match path.extension().and_then(|s| s.to_str()) {
 				Some("md")   => mkfile(&dest.with_extension("html")).write_all(resolve_macros(into_html(path)).as_bytes()),
