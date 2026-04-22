@@ -1,7 +1,7 @@
 <link href="/style/style.css" rel="stylesheet"/>
 <include "header.html">
 
-<blog-header "How geometry blends with calculus", "HEAD of Suggestions", "22-04-2026">
+<blog-header "How geometry blends with calculus", "Cyril Ulyanov", "22-04-2026">
 
 Recently, I came across a mathematical problem from the area of stereometry. I thought it was pretty interesting due to a fairly unexpected way to solve it.
 Not to give the game away immediately, the core idea is to integrate calculus.
@@ -79,7 +79,7 @@ $$
 
 $\text{a}$ is ignored in the first equation because it cancels out.
 
-Now let's take a look at the system and notice that what we're looking for is the minimum value of $\text{h}$ for $\text{h}$ to actually be the height.
+Now, let's take a look at the system and notice that what we're looking for is the minimum value of $\text{h}$ for $\text{h}$ to actually be the height.
 Again, the closest distance *is* the height.
 
 Let's combine the two equations and represent the resulting expression as a function from $\text{x}$ and $\text{z}$.
@@ -112,9 +112,9 @@ $$
 \end{cases}
 $$
 
-Now let's return to $2\text{x} + \text{y} - 2\text{z} = 0$ and insert the known values to get $\text{y}=\frac{10}{3}$.
+Now, let's return to $2\text{x} + \text{y} - 2\text{z} = 0$ and insert the known values to get $\text{y}=\frac{10}{3}$.
 Alright, the minimum of $\text{h}^2$ occurs at $\left( \frac{2}{3}; \frac{10}{3}; \frac{7}{3} \right)$.
-Because $\text{h}$ is directed determined by $\text{x}$, $\text{y}$ and $\text{z}$, we can get it numerically.
+Because $\text{h}$ is directly determined by $\text{x}$, $\text{y}$ and $\text{z}$, we can get it numerically.
 
 $$
 \text{h} = 1
