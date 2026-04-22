@@ -55,7 +55,7 @@ $$
 Which means:
 
 $$
-2ax + ay - 2az = 0
+2\text{ax} + \text{ay} - 2\text{az} = 0
 $$
 
 We're going to need the coordinate we're measuring the height from as well:
