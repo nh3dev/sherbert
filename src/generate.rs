@@ -112,20 +112,19 @@ pub fn generate(src: &Path, dst: &Path, syntax: PathBuf) {
 	let latest = posts.last().map_or_else(String::new, 
 		|p| INCLUDE_RE.replace_all(&p.0, |_: &Captures| "").into_owned());
 
-	let blog_list = (move || {
-		if posts.is_empty() {
-			return String::from("<s>No posts found :(</s>");
-		}
+	let blog_list = match posts.as_slice() {
+		[] => String::from("<s>No posts found :(</s>"),
+		_ => {
+			let mut out = String::from("<div class=\"block\">");
 
-		let mut out = String::from("<div class=\"block\">");
+			posts.into_iter().rev().for_each(|(_, name, _, date, path)| 
+				writeln!(out, "<p><a href=\"{}\">{name} - {date}</a></p>",
+					path.iter().skip(1).collect::<PathBuf>().display()).unwrap());
 
-		posts.into_iter().rev().for_each(|(_, name, _, date, path)| 
-			writeln!(out, "<p><a href=\"{}\">{name} - {date}</a></p>",
-				path.iter().skip(1).collect::<PathBuf>().display()).unwrap());
-
-		write!(out, "</div>");
-		out
-	})();
+			write!(out, "</div>");
+			out
+		},
+	};
 
 	let blog_idx = into_html(&blog_dir.join("index.md"))
 		.replacen("<latest>", &latest, 1)
