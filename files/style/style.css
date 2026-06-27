@@ -135,7 +135,10 @@ code > pre {
 	font-size:   0.85rem;
 }
 
-
+.footnote-ref {
+	padding-left: 0.2rem;
+	border: none;
+}
 
 /* navbar stuff */
 .navbar {
