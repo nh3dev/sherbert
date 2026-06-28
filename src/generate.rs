@@ -229,13 +229,21 @@ impl<'a, 'p> Parser<'p> {
 			NodeValue::Code(NodeCode { ref literal, .. }) => format!("<c>{literal}</c>"),
 			NodeValue::Link(NodeLink { ref url, .. }) => format!("<a href=\"{url}\">{}</a>", self.to_string(node)), 
 			NodeValue::Image(NodeLink { ref url, .. }) => format!("<img src=\"{url}\" alt=\"{}\">", self.to_string(node)),
-			NodeValue::List(NodeList { ref bullet_char, .. }) => format!("<div class=block>\n{}</div>\n", 
-				node.children()
-					.map(|n| format!("<p>{}{}</p>\n", if *bullet_char as char == '-' { "- " } else { "" },
-						if let Some(n) = n.children().next()
-							.filter(|n| n.data.borrow().value == NodeValue::Paragraph)
-						{ self.to_string(n) } else { self.parse_node(n) }))
-					.collect::<String>()),
+			NodeValue::List(NodeList { list_type, bullet_char, ..}) => {
+				let (tag, list_style) = match list_type {
+					comrak::nodes::ListType::Bullet => ("ul", format!("'{}'", char::from(bullet_char))),
+					comrak::nodes::ListType::Ordered => ("ol", "decimal".into())
+				};
+
+				format!("<{} class=block style=\"list-style-type: {}\">\n{}</{}>\n", 
+					tag,
+					list_style,
+					node.children()
+						.map(|n| format!("<li>{}</li>\n", self.parse_node(n)))
+						.collect::<String>(),
+					tag
+				)
+			},
 			NodeValue::CodeBlock(NodeCodeBlock { ref literal, .. }) => {
 				let mut out = Vec::new();
 
