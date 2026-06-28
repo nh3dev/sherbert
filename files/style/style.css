@@ -15,7 +15,7 @@
 body {
 	font-family: "Pragmasevka", monospace;
 	font-size: var(--normal-size);
-	line-height: 1.5;
+	line-height: 1.2;
 	font-weight: 400;
 	tab-size: 3;
 
@@ -127,22 +127,12 @@ code > pre {
 }
 
 .footer {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	align-items: center;
-	height: 15px;
-	font-size: 0.85rem;
-	gap: 1em;
-}
-
-.banners {
-	padding: 1em;
+	padding-bottom: 1em;
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
-	width: 100%;
 	gap: 1em;
+	width: 100%;
 }
 
 .footnote-ref {
