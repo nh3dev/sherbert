@@ -13,8 +13,9 @@
 }
 
 body {
-   font-family: "Pragmasevka", monospace;
-   font-size: var(--normal-size);
+	font-family: "Pragmasevka", monospace;
+	font-size: var(--normal-size);
+	line-height: 1.5;
 	font-weight: 400;
 	tab-size: 3;
 
@@ -46,6 +47,7 @@ h3 {
 }
 
 p {
+	text-align: justify;
 	margin: 8px 0 12px var(--indent);
 	padding-left: 1rem;
 }
