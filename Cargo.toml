@@ -18,10 +18,10 @@ toml = "1.1"
 syntect = "5.2"
 walkdir = "2.5"
 katex-rs = "0.2"
-chrono = "^0.4.43"
+chrono = { version = "^0.4.43", default-features = false }
 
 [profile.release]
-lto = true
+lto = "thin"
 panic = "abort"
 opt-level = "s"
 debug = false
