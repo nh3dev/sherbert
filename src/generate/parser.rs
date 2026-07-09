@@ -2,8 +2,6 @@ use comrak::{Arena, Options};
 use comrak::adapters::SyntaxHighlighterAdapter;
 use comrak::nodes::{AstNode, NodeCode, NodeCodeBlock, NodeFootnoteDefinition, NodeFootnoteReference, NodeHeading, NodeHtmlBlock, NodeLink, NodeList, NodeMath, NodeValue};
 
-use regex::{Regex, Captures};
-
 use katex::{KatexContext, Settings};
 
 use std::sync::LazyLock;
@@ -128,38 +126,41 @@ impl<'a> Parser {
 			NodeValue::Link(NodeLink { ref url, .. }) => format!("<a href=\"{url}\">{}</a>", self.to_string(node)), 
 			NodeValue::Image(NodeLink { ref url, .. }) => format!("<figure><img src=\"{url}\" alt=\"{}\" width=\"100%\"></figure>", self.to_string(node)),
 			NodeValue::List(NodeList { list_type, bullet_char, ..}) => {
-				let (tag, list_style) = match list_type {
-					comrak::nodes::ListType::Bullet => ("ul", format!("'{}'", char::from(bullet_char))),
-					comrak::nodes::ListType::Ordered => ("ol", "decimal".into())
-				};
+				let body = node.children()
+					.map(|n| format!("<li>{}</li>\n", self.parse_node(n)))
+					.collect::<String>();
 
-				format!("<{} class=block style=\"list-style-type: {}\">\n{}</{}>\n", 
-					tag,
-					list_style,
-					node.children()
-						.map(|n| format!("<li>{}</li>\n", self.parse_node(n)))
-						.collect::<String>(),
-					tag
-				)
+				match list_type {
+					comrak::nodes::ListType::Bullet  => format!("<ul class=\"block\" style=\"list-style-type: '{}'\">\n{body}</ul>\n", char::from(bullet_char)),
+					comrak::nodes::ListType::Ordered => format!("<ol class=\"block\" style=\"list-style-type: decimal\">\n{body}</ol>\n"),
+				}
 			},
 
 			NodeValue::CodeBlock(NodeCodeBlock { ref literal, .. }) => {
-				let mut out = Vec::new();
+				let mut src = Vec::new();
 
 				super::syntax::ADAPTER
 					.get().unwrap()
-					.write_highlighted(&mut out, Some("shard"), literal)
+					.write_highlighted(&mut src, Some("shard"), literal)
 					.unwrap();
 
-				let str = String::from_utf8(out).unwrap();
+				let src = String::from_utf8(src).unwrap();
+				let out = src.chars().fold(String::with_capacity(src.len()), |mut acc, c| {
+					acc.push(c);
 
-				// FIXME: find a better way to do this
-				static RE: LazyLock<Regex> = LazyLock::new(|| Regex::new("color:#([0-9a-f]{2})0000;").unwrap());
-				let str = RE.replace_all(&str, |c: &Captures|
-					format!("color:var(--colour{});", usize::from_str_radix(&c[1], 16).unwrap())
-				);
+					let i = acc.len();
+					if i < 14 { return acc; }
 
-				format!("<code><pre>\n{str}</pre></code>\n")
+					if &acc[i - 14..i - 7] == "color:#" && acc.ends_with("0000;") {
+						let id = u8::from_str_radix(&acc[i - 7..i - 5], 16).unwrap();
+						acc.truncate(i - 14);
+						write!(acc, "color:var(--colour{id});");
+					}
+
+					acc
+				});
+
+				format!("<code><pre>{out}</pre></code>\n")
 			},
 
 			NodeValue::Math(NodeMath { ref literal, .. }) => {
