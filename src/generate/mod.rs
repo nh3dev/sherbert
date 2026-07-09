@@ -29,6 +29,7 @@ pub fn generate(src: &Path, dst: &Path) {
 		.for_each(|e| {
 			let path = e.path();
 			let dest = dst.join(path.iter().skip(1).collect::<PathBuf>());
+			let mut og = String::new();
 
 			match path.extension().and_then(|s| s.to_str()) {
 				Some("md") => {
@@ -36,16 +37,32 @@ pub fn generate(src: &Path, dst: &Path) {
 					let (tags, mut body) = parser::Parser::parse(path).unwrap();
 					let mut out = template.clone();
 
-					if let Some(Value::Table(a)) = tags.get("article") {
-						let Some(Value::String(title))  = a.get("title")  else { panic!("[{}]: article missing title field!", path.display())  };
-						let Some(Value::String(author)) = a.get("author") else { panic!("[{}]: article missing author field!", path.display()) };
-						let Some(Value::String(date))   = a.get("date")   else { panic!("[{}]: article missing date field!", path.display())   };
+					match tags.get("article") {
+						Some(Value::Table(a)) => {
+							let Some(Value::String(title))  = a.get("title")  else { panic!("[{}]: article missing title field!", path.display())  };
+							let Some(Value::String(author)) = a.get("author") else { panic!("[{}]: article missing author field!", path.display()) };
+							let Some(Value::String(date))   = a.get("date")   else { panic!("[{}]: article missing date field!", path.display())   };
 
-						body = format!("<div class=\"blog-header\"><h2>{title}</h2><p>by {author}</b><p class=\"blog-date\">{date}</p></div>\n{body}");
+							body = format!("<div class=\"blog-header\"><h2>{title}</h2><p>by {author}</b><p class=\"blog-date\">{date}</p></div>\n{body}");
 
-						articles.push((body.clone(), newpath.clone(), title.clone(), author.clone(), date.clone()));
+							writeln!(og, "<meta property=\"og:type\" content=\"article\"/>");
+							writeln!(og, "<meta property=\"og:title\" content=\"{title}\"/>");
+							writeln!(og, "<meta property=\"og:site_name\" content=\"Free Ammonia Foundation\"/>");
+
+							articles.push((body.clone(), newpath.clone(), title.clone(), author.clone(), date.clone()));
+						},
+						Some(_) => panic!(),
+						None => {
+							writeln!(og, "<meta property=\"og:type\" content=\"website\"/>");
+							writeln!(og, "<meta property=\"og:title\" content=\"Free Ammonia Foundation\"/>");
+						},
 					}
 
+					if let Some(Value::String(summary)) = tags.get("summary") {
+						writeln!(og, "<meta property=\"og:description\" content=\"{summary}\"/>");
+					}
+
+					replace_first(&mut out, "{{opengraph}}", &og);
 					replace_first(&mut out, "{{title}}", tags.get("title").and_then(|t| t.as_str()).unwrap_or("nh3.dev"));
 					replace_first(&mut out, "{{body}}", &body);
 					mkfile(&newpath, out.as_bytes()).unwrap()

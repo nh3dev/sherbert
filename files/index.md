@@ -1,3 +1,5 @@
+summary = "A community of enthusiasts in everything to do with computers or unserious engineering.  Join now."
+---
 # **Free Ammonia Foundation**
 
 This is the official website of the **Free Ammonia Foundation** (**FAF**) --
