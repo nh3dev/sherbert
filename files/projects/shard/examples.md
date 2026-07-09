@@ -1,6 +1,3 @@
-<link href="/style/style.css" rel="stylesheet"/>
-<include "header.html">
-
 The following examples assume `libc` is available on the system.
 
 # Hello World
@@ -82,5 +79,3 @@ impl<T> core::drop |self: Box(T)| {
 let x: Box(i32) = box(5);
 core::drop(x);
 ```
-
-<include "footer.html">

@@ -1,8 +1,8 @@
-<link href="/style/style.css" rel="stylesheet"/>
-<include "header.html">
-
-<blog-header "How geometry blends with calculus", "Cyril Ulyanov", "22-04-2026">
-
+[article]
+title = "How geometry blends with calculus"
+author = "Cyril Ulyanov"
+date = "22-04-2026"
+---
 Recently, I came across a mathematical problem from the area of stereometry. I thought it was pretty interesting due to a fairly unexpected way to solve it.
 Not to give the game away immediately, the core idea is to integrate calculus.
 
@@ -119,5 +119,3 @@ Because $\text{h}$ is directly determined by $\text{x}$, $\text{y}$ and $\text{z
 $$
 \text{h} = 1
 $$
-
-<include "footer.html">

@@ -1,6 +1,3 @@
-<link href="/style/style.css" rel="stylesheet"/>
-<include "header.html">
-
 <div style="position:relative;display:inline-block;">
 <img src="shard/shark.png" style="position:absolute;"/>
 <div style="padding-left:9px;">
@@ -50,6 +47,3 @@ let average = |a: &[u32]|: u32 {
   One day we might also make **Phase** as a companion project, but that is a long way off.
 - Who's working on this? Check [the repo](https://github.com/nh3dev/sharc) for up to date info.  
   Currently its mostly me + bullying others into helping. 
-
-
-<include "footer.html">

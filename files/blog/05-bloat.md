@@ -1,8 +1,8 @@
-<link href="/style/style.css" rel="stylesheet"/>
-<include "header.html">
-
-<blog-header "Size does matter, actually", "Nick Borș", "27-06-2026">
-
+[article]
+title = "Size does matter, actually"
+author = "Nick Borș"
+date = "27-06-2026"
+---
 <img src="/blog/assets/05-bloat/bloat_graph.jpg" alt="Graph of page weight over time" width="100%" style="object-fit: fill"/>
 
 I'd like to start with this graph I made[^1].
@@ -190,5 +190,3 @@ about web-bloat focusing on connection speeds.
 about contrast which embodies a wider premise of function over form.
 - This site dedicated to [System font-stacks](https://systemfontstack.com/); 
 they should be prefered almost always (imo).
-
-<include "footer.html">

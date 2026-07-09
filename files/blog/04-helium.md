@@ -1,8 +1,8 @@
-<link href="/style/style.css" rel="stylesheet"/>
-<include "header.html">
-
-<blog-header "The most crucial accomplishment of Lev Landau", "Cyril Ulyanov", "04-06-2026">
-
+[article]
+title = "The most crucial accomplishment of Lev Landau"
+author = "Cyril Ulyanov"
+date = "04-06-2026"
+---
 Scientists put liquid helium into a container and cooled
 it down until it was freezing cold.
 Suddenly, they noticed liquid's behavior was strange: it became a superfluid with zero friction.
@@ -36,5 +36,3 @@ The formula calculates the speed limit $(\mathrm{v_c})$ the liquid must stay und
 To find this speed limit, scientists look at how energy moves through the liquid in two different ways: as phonons (sound waves) and rotons (microscopic twists). Moving fast enough to create a sound wave requires a high velocity. However, because helium atoms are closely packed together, they reach a threshold where the liquid is guaranteed to generate a roton twist first. Because Landau's formula calculates the minimum speed that makes friction, this lower threshold sets the speed limit to a lower value. The moment an object moving through the liquid exceeds this limit, it triggers these internal vibrations, which generates friction.
 
 Landau published these formulas in the 1940s and earned the Nobel Prize in Physics in 1962.
-
-<include "footer.html">

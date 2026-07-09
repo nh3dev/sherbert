@@ -1,8 +1,8 @@
-<link href="/style/style.css" rel="stylesheet"/>
-<include "header.html">
-
-<blog-header "Hiatus", "Anthony Slab", "21-11-2025">
-
+[article]
+title = "Hiatus"
+author = "Anthony Slab"
+date = "21-11-2025"
+---
 Perhaps not the most exhilarating news to read in our inaugural blog post;
 I quit programming. Most definitely not forever but at least for the foreseeable future.
 It has lead me only to incessant frustration which I have simply grown tired of.
@@ -11,5 +11,3 @@ remain more than happy to review and accept any PRs.
 
 I will be focusing on several other projects in the meanwhile, 
 about which I'll be posting more blogs here in the upcoming days.
-
-<include "footer.html">

@@ -1,6 +1,3 @@
-<link href="style/style.css" rel="stylesheet"/>
-<include "header.html">
-
 # **Free Ammonia Foundation**
 
 This is the official website of the **Free Ammonia Foundation** (**FAF**) --
@@ -41,5 +38,3 @@ Membership means you get a few cool perks:
 - brand new, shiny `nh3.dev` matrix account with a username of your choice
 - access to create git repositories under `github.com/nh3dev`
 - member role on our [Discord](https://discord.gg/f5FVgr7gxX)
-
-<include "footer.html">

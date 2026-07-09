@@ -1,7 +1,3 @@
-<link href="/style/style.css" rel="stylesheet"/>
-<include "header.html">
-
-
 # Types
 
 > **IMPORTANT:**  
@@ -130,5 +126,3 @@ struct MyPaddedStruct {
 <!--     This type is only `{1:13}` if the `:STRTERM` tag is not set, which is by default set to `0` -->
 <!--     when using **Shard's** standard library. If `:STRTERM` is set, the infered size of string literals be -->
 <!--     one longer to accomodate for the terminal character (eg. `{1:14}`) -->
-
-<include "footer.html">
