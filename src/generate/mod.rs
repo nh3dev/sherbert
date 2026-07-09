@@ -64,9 +64,9 @@ pub fn generate(src: &Path, dst: &Path) {
 			let mut out = String::from("<div class=\"block\">");
 
 			articles.into_iter().rev().for_each(|(_, path, title, _, date)| 
-				writeln!(out, "<p><a href=\"{}\">{title} - {date}</a></p>",
-					path.iter().skip(1).collect::<PathBuf>().display()).unwrap());
-
+				writeln!(out, "<p><a href=\"{}\">{title}<span class=\"tag-date\">{date}</span></a></p>",
+	                path.iter().skip(1).collect::<PathBuf>().display()).unwrap()
+            );
 			write!(out, "</div>");
 			out
 		},

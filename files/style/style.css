@@ -133,6 +133,13 @@ code > pre {
 	padding: 0;
 }
 
+.tag-date {
+	font-size: calc(var(--normal-size) - 0.28rem);
+	font-weight: 400;
+	color: var(--colour6);
+	margin-left: 0.5em;
+}
+
 footer {
 	padding-bottom: 1em;
 	display: flex;
