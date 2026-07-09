@@ -147,9 +147,6 @@ scanning service](https://radar.cloudflare.com/scan/) under the
 _Network_ tab to see where you stand currently.
 
 <br/>
-<br/>
-
-## Footnotes
 
 [^1]: Data accsessed on 27th Jul 2026, kindly provided by the
 [Http Archaive](https://httparchive.org/) (on a lean ~447KB
@@ -169,8 +166,6 @@ and others you can easily find. This is just what I read.
 
 [^4]: Deloitte's _Milliseconds make Millions_
 [PDF](https://www.deloitte.com/content/dam/assets-zone2/ie/en/docs/services/consulting/2023/Milliseconds_Make_Millions_report.pdf)
-
-<footnotes>
 
 <br>
 
