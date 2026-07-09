@@ -7,24 +7,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>{{title}}</title>
 
-		<header>
-			<div class=navbar>
-				<a href="/">Home</a>
-				<a href="/projects">Projects</a>
-				<a href="/rocks">Rocks</a>
-				<a href="/blog">Blog</a>
-
-				<div class=dropdown>
-					<button>Theme</button>
-					<div class="dropdown-content">
-						<a href="?t=nord"    onclick="set_theme('nord')">nord</a>
-						<a href="?t=gruvbox" onclick="set_theme('gruvbox')">gruvbox</a>
-						<a href="?t=classic" onclick="set_theme('classic')">classic</a>
-					</div>
-				</div>
-			</div>
-		</header>
-
 		<!-- I'm sorry, maj made me do this -->
 		<script>
 			const set_theme = (name) =>
@@ -46,16 +28,33 @@
 		</script>
 	</head>
 
-
 	<body>
-		{{body}}
-	</body>
+		<header>
+			<a href="/">Home</a>
+			<a href="/projects">Projects</a>
+			<a href="/rocks">Rocks</a>
+			<a href="/blog">Blog</a>
 
-	<footer>
-		<!-- please specify width and height for fast layout -->
-		<img src="/assets/nh3.gif" width=88 height=31 />
-		<a href="https://512kb.club"><img src="/assets/512kb-green.gif" width=88 height=31 /></a>
-		<a href="https://creativecommons.org/publicdomain/zero/1.0/"><img src="/assets/cc0.gif" width=88 height=31 /></a>
-	</footer>
+			<div class=dropdown>
+				<button>Theme</button>
+				<div class="dropdown-content">
+					<a href="?t=nord"    onclick="set_theme('nord')">nord</a>
+					<a href="?t=gruvbox" onclick="set_theme('gruvbox')">gruvbox</a>
+					<a href="?t=classic" onclick="set_theme('classic')">classic</a>
+				</div>
+			</div>
+		</header>
+
+		<article>
+			{{body}}
+		</article>
+
+		<footer>
+			<!-- please specify width and height for fast layout -->
+			<img src="/assets/nh3.gif" width=88 height=31 />
+			<a href="https://512kb.club"><img src="/assets/512kb-green.gif" width=88 height=31 /></a>
+			<a href="https://creativecommons.org/publicdomain/zero/1.0/"><img src="/assets/cc0.gif" width=88 height=31 /></a>
+		</footer>
+	</body>
 </html>
 

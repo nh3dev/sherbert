@@ -3,7 +3,7 @@ title = "Size does matter, actually"
 author = "Nick Borș"
 date = "27-06-2026"
 ---
-<img src="/blog/assets/05-bloat/bloat_graph.jpg" alt="Graph of page weight over time" width="100%" style="object-fit: fill"/>
+![Graph of page weight over time](/blog/assets/05-bloat/bloat_graph.jpg)
 
 I'd like to start with this graph I made[^1].
 
@@ -140,13 +140,16 @@ from the public eye, maybe this is it (consider
 Anyways, enough rambling.
 
 ## TL;DR
+
+<summary>
+
 Make websites the old way -- regardless of if you are an
 individual or not -- and respect users time, privacy, and resources.
 You can check your performance and page weight at [Cloudflare's
 scanning service](https://radar.cloudflare.com/scan/) under the
 _Network_ tab to see where you stand currently.
 
-<br/>
+</summary>
 
 [^1]: Data accsessed on 27th Jul 2026, kindly provided by the
 [Http Archaive](https://httparchive.org/) (on a lean ~447KB
@@ -171,16 +174,16 @@ and others you can easily find. This is just what I read.
 
 ### Cool further reading/practical advice
 - Page weight based clubs (self explanatory):
-  - [250KB.club](https://250kb.club) <br>
-  - [512KB.club](https://512kb.club) <br>
-  - [1MB.club](https://1mb.club) <br>
+  - [250KB.club](https://250kb.club)
+  - [512KB.club](https://512kb.club)
+  - [1MB.club](https://1mb.club)
 - The [No-JS club](https://no-js.club/) (self explanatory).
 - [Danluu's post on web-bloat](https://danluu.com/web-bloat/) is
 about web-bloat focusing on connection speeds.
-- This triad. You can open, and steal their ideas/css/attitude as you see fit: <br>
-  - [This is a motherfucking website.](http://motherfuckingwebsite.com/) <br>
-  - [This is a better motherfucking website.](http://bettermotherfuckingwebsite.com/) <br>
-  - [This is a best motherfucking website.](http://bestmotherfuckingwebsite.com/) <br>
+- This triad. You can open, and steal their ideas/css/attitude as you see fit:
+  - [This is a motherfucking website.](http://motherfuckingwebsite.com/)
+  - [This is a better motherfucking website.](http://bettermotherfuckingwebsite.com/)
+  - [This is a best motherfucking website.](http://bestmotherfuckingwebsite.com/)
 - [Contrast Rebellion](https://contrastrebellion.com/)'s article
 about contrast which embodies a wider premise of function over form.
 - This site dedicated to [System font-stacks](https://systemfontstack.com/); 

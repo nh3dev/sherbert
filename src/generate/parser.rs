@@ -126,7 +126,7 @@ impl<'a> Parser {
 			NodeValue::HtmlBlock(NodeHtmlBlock { ref literal, .. }) => String::from(literal),
 			NodeValue::Code(NodeCode { ref literal, .. }) => format!("<c>{literal}</c>"),
 			NodeValue::Link(NodeLink { ref url, .. }) => format!("<a href=\"{url}\">{}</a>", self.to_string(node)), 
-			NodeValue::Image(NodeLink { ref url, .. }) => format!("<img src=\"{url}\" alt=\"{}\">", self.to_string(node)),
+			NodeValue::Image(NodeLink { ref url, .. }) => format!("<figure><img src=\"{url}\" alt=\"{}\" width=\"100%\"></figure>", self.to_string(node)),
 			NodeValue::List(NodeList { list_type, bullet_char, ..}) => {
 				let (tag, list_style) = match list_type {
 					comrak::nodes::ListType::Bullet => ("ul", format!("'{}'", char::from(bullet_char))),
