@@ -14,7 +14,8 @@ mime_guess = "2.0"
 
 # generate
 comrak = { version = "0.39", default-features = false, features = ["syntect"] }
-regex = "1.11"
+toml = "1.1"
+regex = "1.11" # maybe unnecessary
 syntect = "5.2"
 walkdir = "2.5"
 katex-rs = "0.2"

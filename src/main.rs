@@ -26,13 +26,12 @@ enum Command {
 	Generate {
 		source: PathBuf,
 		output: PathBuf,
-		syntax: PathBuf,
 	},
 }
 
 fn main() {
 	match Args::parse().command {
 		Command::Host { dir, addr, theme } => host::host(dir, &addr, theme),
-		Command::Generate { source, output, syntax } => generate::generate(&source, &output, syntax),
+		Command::Generate { source, output } => generate::generate(&source, &output),
 	}
 }
