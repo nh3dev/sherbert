@@ -88,6 +88,7 @@ aside p {
 
 @media (max-width: 768px) {
 	aside {
+		float: none;
 		max-width: 100%;
 	}
 }
@@ -96,8 +97,6 @@ aside p {
 img {
 	object-fit: fill;
 }
-
-
 
 li > p {
 	margin-left: 0 !important;
@@ -317,7 +316,7 @@ nav a:hover, .dropdown:hover button {
 	left: 0;
 	top: -0.2em;
 	padding: 0.4em;
-	min-width: 30vw;
+	min-width: 30%;
 }
 
 .footnote:hover .preview {
