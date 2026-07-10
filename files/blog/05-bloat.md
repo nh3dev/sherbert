@@ -3,7 +3,21 @@ title = "Size does matter, actually"
 author = "Nick Borș"
 date = "27-06-2026"
 ---
-![Graph of page weight over time](/blog/assets/05-bloat/bloat_graph.svg "Total page weight (KB) over time (years) from 2011-2026.")
+
+## TL;DR
+
+<summary>
+
+Make websites the old way -- regardless of if you are an
+individual or not -- and respect users time, privacy, and resources.
+You can check your performance and page weight at [Cloudflare's
+scanning service](https://radar.cloudflare.com/scan/) under the
+_Network_ tab to see where you stand currently.
+
+</summary>
+
+![Graph of page weight over time](/blog/assets/05-bloat/bloat_graph.svg
+"Total page weight over the years (2011-2026).")
 
 I'd like to start with this graph I made[^1].
 
@@ -138,18 +152,6 @@ from the public eye, maybe this is it (consider
 [nh3.dev](https://nh3.dev)?).
 
 Anyways, enough rambling.
-
-## TL;DR
-
-<summary>
-
-Make websites the old way -- regardless of if you are an
-individual or not -- and respect users time, privacy, and resources.
-You can check your performance and page weight at [Cloudflare's
-scanning service](https://radar.cloudflare.com/scan/) under the
-_Network_ tab to see where you stand currently.
-
-</summary>
 
 [^1]: Data accsessed on 27th Jul 2026, kindly provided by the
 [Http Archaive](https://httparchive.org/) (on a lean ~447KB
