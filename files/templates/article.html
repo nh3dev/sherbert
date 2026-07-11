@@ -1,0 +1,25 @@
+inherits = "master"
+article-index = []
+opengraph = [
+	"<meta property=\"og:type\" content=\"article\"/>",
+	"<meta property=\"og:site_name\" content=\"Free Ammonia Foundation\"/>"
+]
+---
+<p>
+	Anyone can create write an article here! Simply make a PR to the
+	<a href="https://github.com/nh3dev/sherbert">sherbert repo</a>
+	or ask us on <a href="https://discord.gg/f5FVgr7gxX">Discord</a>!<br>
+	Changes usually take effect within ~10min of being approved.
+</p>
+
+<div class="blog-header">
+	<h2>{{article.title}}</h2>
+	<p>by {{article.author}}</b>
+	<p class="blog-date">{{article.date}}</p>
+</div>
+
+{{body}}
+
+<br/>
+<h1>All Articles</h1>
+<div class="block">{{article-index}}</div>

@@ -24,7 +24,6 @@ static COMRAK_OPTIONS: LazyLock<Options> = LazyLock::new(|| Options {
 	..Default::default()
 });
 
-
 pub struct Parser {
 	footnotes: Vec<(String, String)>,
 	pre:  toml::Table, // kept in case we wanna add extra opts to md parsing
@@ -32,12 +31,7 @@ pub struct Parser {
 
 impl<'a> Parser {
 	pub fn parse(path: &Path) -> Result<(toml::Table, String), toml::de::Error> {
-		let file = fs::read_to_string(path).unwrap();
-
-		let (pre, body) = match file.split_once("---\n") {
-			Some((pre, body)) => (pre.parse::<toml::Table>()?, body.to_string()),
-			None => (toml::Table::new(), file),
-		};
+		let (pre, body) = super::split_header(fs::read_to_string(path).unwrap())?;
 
 		let mut this = Self { footnotes: Vec::new(), pre };
 
@@ -47,7 +41,7 @@ impl<'a> Parser {
 		let mut out = this.parse_node(root);
 
 		this.footnotes.into_iter().for_each(|(id, desc)|
-			super::replace_first(&mut out, &format!("<preview-{id}>"), &desc));
+			super::replace_first(&mut out, format!("<preview-{id}>"), &desc));
 
 		Ok((this.pre, out))
 	}
