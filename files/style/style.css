@@ -192,7 +192,7 @@ header a {
 	transition: background-color 0.2s ease;
 }
 
-.navbar a:hover, .dropdown:hover button {
+header a:hover, .dropdown:hover button {
 	background-color: var(--colour10);
 }
 
