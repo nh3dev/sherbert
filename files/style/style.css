@@ -56,7 +56,6 @@ a {
 	text-decoration: none;
 	font-weight: bold;
 	color: var(--colour6);
-	white-space: nowrap; /* never line-break inside links */
 	border-bottom: 2px dashed transparent;
 	transition: border-color 0.2s ease;
 }
@@ -75,9 +74,30 @@ th {
 	border-spacing: 1em;
 }
 
+aside {
+	float: left;
+	max-width: 40%;
+}
+
+aside p {
+	margin-top: 0;
+	font-size: calc(var(--normal-size) - 0.28rem);
+	text-align: center;
+	color: var(--colour2);
+}
+
+@media (max-width: 768px) {
+	aside {
+		max-width: 100%;
+	}
+}
+
+
 img {
 	object-fit: fill;
 }
+
+
 
 li > p {
 	margin-left: 0 !important;
@@ -149,18 +169,33 @@ footer {
 	width: 100%;
 }
 
+.allposts li {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	white-space: nowrap;
+}
+.allposts li a {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 
 /* navbar stuff */
-header {
+nav {
+	display: flex;
+	align-items: center;
+	gap: 1em;
 	overflow: hidden;
 	background-color: var(--colour0);
 	border-radius: 0.75em;
 	margin-bottom: 1em;
 }
 
-header a {
-	float: left;
-	gap: 1.5rem;
+nav > :last-child {
+	margin-left: auto;
+}
+
+nav a {
 	font-size: var(--nav-size);
 	color: var(--colour3);
 	text-align: center;
@@ -171,7 +206,6 @@ header a {
 }
 
 .dropdown {
-	float: right;
 	overflow: hidden;
 }
 
@@ -192,7 +226,7 @@ header a {
 	transition: background-color 0.2s ease;
 }
 
-header a:hover, .dropdown:hover button {
+nav a:hover, .dropdown:hover button {
 	background-color: var(--colour10);
 }
 
@@ -206,7 +240,6 @@ header a:hover, .dropdown:hover button {
 }
 
 .dropdown-content a {
-	float: none;
 	color: var(--colour3);
 	padding: 12px 16px;
 	text-decoration: none;
@@ -223,6 +256,17 @@ header a:hover, .dropdown:hover button {
 	display: block;
 }
 
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+    }
+    nav * {
+        width: 100%;
+    }
+    nav > :last-child {
+        margin-left: 0;
+    }
+}
 
 /* blog */
 .blog-header {

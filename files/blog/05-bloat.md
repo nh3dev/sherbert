@@ -3,7 +3,7 @@ title = "Size does matter, actually"
 author = "Nick Borș"
 date = "27-06-2026"
 ---
-![Graph of page weight over time](/blog/assets/05-bloat/bloat_graph.svg)
+![Graph of page weight over time](/blog/assets/05-bloat/bloat_graph.svg "Total page weight (KB) over time (years) from 2011-2026.")
 
 I'd like to start with this graph I made[^1].
 

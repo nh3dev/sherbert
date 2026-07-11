@@ -14,14 +14,14 @@ Alright so, here's the information we're given:
 
 First of all, let's simply draw what we've been provided with:
 
-<img src="/blog/assets/03-geometry/first.png" alt="First visualization" width="18%">
+<img src="/blog/assets/03-geometry/first.png" alt="Visualization of a cuboid with a plane" width="18%">
 
 For obvious reasons, section *BTND* is an isosceles trapezoid. It's more than trivial to prove this fact, but because that isn't what we're here for,
 simply accept this statement as true. As a consequence, $\text{GN} = \text{GT}$. Oh, and the placement of the section is also quite easy to determine; likewise, we aren't going to concentrate on that.
 
 Let's not forget that a plane is infinite and stretch it further up to cover enough space for the height to emerge.
 
-<img src="/blog/assets/03-geometry/second.png" alt="Second visualization" width="40%">
+<img src="/blog/assets/03-geometry/second.png" alt="Second visualization of a cuboid with a plane, showing the extended triangle" width="40%">
 
 Also, why the heck did I mention the height? Well, what's shorter than a height if we're talking about
 the distance between $\text{G}$ and the plane? Nothing.
