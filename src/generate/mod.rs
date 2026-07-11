@@ -100,6 +100,7 @@ impl Engine {
 			chrono::NaiveDate::parse_from_str(date, "%d-%m-%Y").unwrap());
 
 		let article_paths = articles.iter().map(|(p, _, _, _)| p.clone()).collect::<Vec<_>>();
+
 		let article_index = articles.iter().rev().map(|(path, title, _, date)|
 			format!("<li><a href=\"/{}\">{title}</a><span class=\"tag-date\">{date}</span></li>",
 				path.iter().skip(1).collect::<PathBuf>().display()))
