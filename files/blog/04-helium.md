@@ -11,7 +11,13 @@ it crawled up the glass and flowed from the brim.
 According to regular physics, atoms are supposed to collide, create friction, and therefore decelerate.
 However, what they observed with the liquid looked like a contradiction.
 
-<img src="/blog/assets/04-helium/container.jpg" alt="First visualization" width="18%">
+<aside>
+
+![Visualization of superfluid helium](/blog/assets/04-helium/container.jpg "Alfred Leitner took this photograph as part of his movie \"Liquid Helium, Superfluid\"")
+
+_source_[^1]
+
+</aside>
 
 Scientists tried to explain the lack of friction by looking at the liquid atom by atom, treating it like a very cold gas.
 They thought that when the liquid got ultra-cold, individual helium atoms changed their properties, which resulted in what they witnessed.
@@ -36,3 +42,5 @@ The formula calculates the speed limit $(\mathrm{v_c})$ the liquid must stay und
 To find this speed limit, scientists look at how energy moves through the liquid in two different ways: as phonons (sound waves) and rotons (microscopic twists). Moving fast enough to create a sound wave requires a high velocity. However, because helium atoms are closely packed together, they reach a threshold where the liquid is guaranteed to generate a roton twist first. Because Landau's formula calculates the minimum speed that makes friction, this lower threshold sets the speed limit to a lower value. The moment an object moving through the liquid exceeds this limit, it triggers these internal vibrations, which generates friction.
 
 Landau published these formulas in the 1940s and earned the Nobel Prize in Physics in 1962.
+
+[^1]: Alfred Leitner's movie, reuploaded as a [Youtube video](https://youtu.be/7eZlF6IToQs) by Brynn Vanscoy.

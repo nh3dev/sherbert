@@ -39,25 +39,28 @@ title = "nh3.dev"
 
 	<body>
 		<header>
-			<a href="/">Home</a>
-			<a href="/projects">Projects</a>
-			<a href="/rocks">Rocks</a>
-			<a href="/blog">Articles</a>
+			<nav>
+				<a href="/">Home</a>
+				<a href="/projects">Projects</a>
+				<a href="/rocks">Rocks</a>
+				<a href="/blog">Articles</a>
 
-			<div class=dropdown>
-				<button>Theme</button>
-				<div class="dropdown-content">
-					<a href="?t=nord"    onclick="set_theme('nord')">nord</a>
-					<a href="?t=gruvbox" onclick="set_theme('gruvbox')">gruvbox</a>
-					<a href="?t=classic" onclick="set_theme('classic')">classic</a>
-					<a href="?t=mustard" onclick="set_theme('mustard')">mustard</a>
+				<div class=dropdown>
+					<button>Theme</button>
+					<div class="dropdown-content">
+						<a href="?t=nord"    onclick="set_theme('nord')">nord</a>
+						<a href="?t=gruvbox" onclick="set_theme('gruvbox')">gruvbox</a>
+						<a href="?t=classic" onclick="set_theme('classic')">classic</a>
+					</div>
 				</div>
-			</div>
+			</nav>
 		</header>
 
-		<article>
-			{{body}}
-		</article>
+		<main>
+			<article>
+				{{body}}
+			</article>
+		</main>
 
 		<footer>
 			<!-- please specify width and height for fast layout -->

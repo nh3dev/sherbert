@@ -118,7 +118,7 @@ impl<'a> Parser {
 			NodeValue::HtmlBlock(NodeHtmlBlock { ref literal, .. }) => String::from(literal),
 			NodeValue::Code(NodeCode { ref literal, .. }) => format!("<c>{literal}</c>"),
 			NodeValue::Link(NodeLink { ref url, .. }) => format!("<a href=\"{url}\">{}</a>", self.to_string(node)), 
-			NodeValue::Image(NodeLink { ref url, .. }) => format!("<figure><img src=\"{url}\" alt=\"{}\" width=\"100%\"></figure>", self.to_string(node)),
+			NodeValue::Image(NodeLink { ref url, ref title }) => format!("<figure><img src=\"{url}\" alt=\"{}\" width=\"100%\"><figcaption>{}</figcaption></figure>", self.to_string(node), title),
 			NodeValue::List(NodeList { list_type, bullet_char, ..}) => {
 				let body = node.children()
 					.map(|n| format!("<li>{}</li>\n", self.parse_node(n)))
