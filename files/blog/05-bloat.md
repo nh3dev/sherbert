@@ -30,7 +30,7 @@ And do you think that it is justified? Has web content really gotten
 increase from ~200KB to a median of ~2.5MB? I think not.
 
 Images, videos, and text, the _real_ content, has gotten both more
-accessible and more prevalant -- a good thing make no mistake --
+accessible and more prevalent -- a good thing make no mistake --
 but I find myself feeling disenchanted with the current state of
 the Internet. Where are our good ol' 88x31px banners? Where is the
 charm that once was, and where is the craftsmanship that made small
@@ -38,26 +38,26 @@ efficient websites commonplace?
 
 Today I crawl about the web, encumbered by A.I-generated _slop_,
 ads (and A.I-generated ads), upheld by megabytes of unreadable
-minified javascript, veiled in sleek modern ui sanitized of any
-character, meaning, or memorability. A wolf in sheeps clothing.
-Though, thats not to say that a subculture of performance-oriented,
-likely similarly frustrated people dont exist. And its on you whom
-I call upon to fix this maddness.
+minified JavaScript, veiled in sleek modern UI sanitized of any
+character, meaning, or memorability. A wolf in sheep's clothing.
+Though, that's not to say that a subculture of performance-oriented,
+likely similarly frustrated people don't exist. And its on you whom
+I call upon to fix this madness.
 
 Static web-pages built upon HTML and CSS offer a simple, streamlined
 and secure way to interact with the world, share ideas, write
-articles, research you name it. Even the entrepeneur-developers of
+articles, research you name it. Even the entrepreneur-developers of
 the world can learn to thrive through doing things the _old way_.
 I think "static" is a bit of a misnomer -- you can get a lot done
-with just a simple http server, a pinch of CSS, and some grit.
-Notice the lack of javascript -- its not as necessary as you think.
+with just a simple HTTP server, a pinch of CSS, and some grit.
+Notice the lack of JavaScript -- it's not as necessary as you think.
 Web frameworks, optimising for the _developer experience_ have lost
 my trust. The debt created by their speed and ergonomics is paid
 for in full by the user in the form of huge payloads. Analytics,
 tracking, and pop-ups serve to only get in your way, and, upon
 pealing back the rancid and rampant overgrowth, you will see the
 reliable brick and mortar of the internet: HTML and CSS.  That is 
-where the _real_ content lies. Note, this isnt to say that javascript
+where the _real_ content lies. Note, this isn't to say that JavaScript
 is necessarily bad, but I think that it is a breeding ground to an
 attitude towards software which disrespects the user.  The same can
 be said for programs outside of the web -- as electron apps choose
@@ -74,16 +74,16 @@ which only makes sense within our social circles. It is not so. The
 mindset of optimising and unencumbering your users extends to even
 main-stream, large, transnational corporations, it's rare, but it
 happens. The impacts of speed, whilst not explicitly clear to the
-layman, translates into annoyance felt by us all.  On the contrary,
+layman, translate into annoyance felt by us all.  On the contrary,
 good leadership and a talented team of developers at
-[MacMaster-Carr](https://www.mcmaster.com/) helped make the minimalist
+[McMaster-Carr](https://www.mcmaster.com/) helped make the minimalist
 site a staple of modern construction, whilst being about as main-stream
 as it gets.  Open their web-page. I encourage you. Take a look at
 how fast it loads, and remember this when you are sold the lied to
 that "websites are just more complex nowadays, so of course their
 bigger".  This catalogue contains _thousands_ of unique products,
 yet it not only loads quick thanks to clever engineering, but is
-actually _a joy to use_. The user experience at MacMaster-Carr is a
+actually _a joy to use_. The user experience at McMaster-Carr is a
 dream of both engineers and UI designers. It is not cluttered. It is
 not difficult to use like other commercial catalogues such as eBay
 or Amazon with their endless nested drop-downs and inept search
@@ -91,12 +91,12 @@ functions (if you have used eBay, I'm sure you know what i mean).
 
 > But how could such a minimalist, function-over-form attitude ever
 promulgate in the corporate world? Don't shareholders chase sleek,
-modern design and dont product managers demand they look better
+modern design and don't product managers demand they look better
 than their competitors?
 
-Yes, they typically do dont they? I think thats bad leadership
+Yes, they typically do don't they? I think that's bad leadership
 bandwagoning on the promise of dividends for investors through the
-use of modern bloat painted in the lead paint that is modern ui
+use of modern bloat painted in the lead paint that is modern UI
 trends. The truth is that this mentality is in a false dichotomy
 with the demands of the business world. In reality, users will come
 back time and time again when something is boring and "just works".
@@ -110,39 +110,39 @@ website:
 - Image atlases to reduce network requests. They just send one strip
 - Images with fixed widths -- no expensive DOM redraws. This website
 skips every re-layout it can.
-- Inlining critical css to prevent layout shifts.
-- Pages are pre-loaded when you hover over links so theyre ready
+- Inlining critical CSS to prevent layout shifts.
+- Pages are pre-loaded when you hover over links so they're ready
 for when you click. The use of assumptions and heuristics to improve
 UX at the expense of _their_ server workload sounds to me like the
 antithesis of Big. Bloat. Notice how they respect your time, and
 value it over their computational resources?
 - Client-side caching via service workers -- they (literally) stop
-you from making unecessary requests.
-- Javascript bundling. Though they admittedly use a lot, they are
+you from making unnecessary requests.
+- JavaScript bundling. Though they admittedly use a lot, they are
 careful enough to only include what is used on a per-page basis.
 
-...and many more I probably havnt yet discovered.
+...and many more I probably haven't yet discovered.
 
 My point being, it is not only _viable_ but _beneficial_[^3] to be
 speedy, and understandable (with studies reporting 8% and 10%
 increase in conversion rates, and order value growing by 9.2% and
 1.9% from a mere 0.1s difference in load times for retail and travel
-sites respectively[^4]).  Thats what retains users -- not
+sites respectively[^4]).  That's what retains users -- not
 pestering them with useless AI chatbots and banners that seem to
 always block your clicks, returning time and time again after your
 dismissal.
 
 As for individuals (hopefully such as yourself) allied to the fight
 against bloat, there too exists a space carved out on the internet.
-I'm not refering to your popular chat platforms, such as Discord,
+I'm not referring to your popular chat platforms, such as Discord,
 Telegram, and X (formerly Twitter), of course. They are subject to the
-whims of politics, legislation, bankrupcy and serve only to sell
+whims of politics, legislation, bankruptcy and serve only to sell
 your (meta) data away to the highest bidder -- literally. No, I
-mean webrings, IRC, XMPP, mailing lists and other little nerdy and
+mean web-rings, IRC, XMPP, mailing lists and other little nerdy and
 geeky communities (such as this one!). Mass media makes you the
 product. Strive to dominate the surrounding technologies, own them if 
 you can, lest they dominate you. Governments are getting more and
-more comfortable in takeing away your liberties (at least in some
+more comfortable in taking away your liberties (at least in some
 parts of the world) and whether or not you believe that, or whether
 it applies to where you live, it should still be important to you
 to keep, practice, and maintain your rights. This is yet another
@@ -153,7 +153,7 @@ from the public eye, maybe this is it (consider
 
 Anyways, enough rambling.
 
-[^1]: Data accsessed on 27th Jul 2026, kindly provided by the
+[^1]: Data accessed on 27th Jul 2026, kindly provided by the
 [Http Archaive](https://httparchive.org/) (on a lean ~447KB
 [page](https://httparchive.org/reports/page-weight), which I highly
 recommend checking out, which just so happens to follow the principles
@@ -189,4 +189,4 @@ about web-bloat focusing on connection speeds.
 - [Contrast Rebellion](https://contrastrebellion.com/)'s article
 about contrast which embodies a wider premise of function over form.
 - This site dedicated to [System font-stacks](https://systemfontstack.com/); 
-they should be prefered almost always (imo).
+they should be preferred almost always (imo).
