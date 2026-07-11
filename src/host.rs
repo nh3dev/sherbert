@@ -82,6 +82,8 @@ pub fn host(root: PathBuf, addr: &str, theme: String) {
 	cache.insert::<Files>(Arc::new(RwLock::new(Files(HashMap::new()))));
 	cache.insert::<Config>(Arc::new(Config { root, theme }));
 
+	println!("Listening at `{addr}`");
+
 	foxhole::App::builder(router)
 		.cache(cache)
 		.run::<foxhole::Http1>(addr);
