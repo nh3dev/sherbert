@@ -141,13 +141,11 @@ code > pre {
 
 .quote {
 	padding: 2px 0 2px 1rem;
-	margin-left: calc(var(--indent) + 1rem);
-	margin-bottom: 4px;
-
+	margin: 12px 0 4px calc(var(--indent) + 1rem);
 	border-left: 2px solid var(--colour3);
 }
 
-.quote p {
+.quote p, .quote h3 {
 	margin: 0;
 	padding: 0;
 }
