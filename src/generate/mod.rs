@@ -101,12 +101,6 @@ impl Engine {
 
 		let article_paths = articles.iter().map(|(p, _, _, _)| p.clone()).collect::<Vec<_>>();
 
-		let article_index = articles.iter().rev().map(|(path, title, _, date)|
-			format!("<li><a href=\"/{}\">{title}</a><span class=\"tag-date\">{date}</span></li>",
-				path.iter().skip(1).collect::<PathBuf>().display()))
-			.map(Value::String)
-			.collect::<Vec<_>>();
-
 		files.into_iter().for_each(|(mut tags, body, path, newpath)| {
 			let template = match tags.get("template") {
 				Some(Value::String(name)) => name.clone(),
@@ -114,16 +108,35 @@ impl Engine {
 				None => String::from("default"),
 			};
 
+			if article_paths.last() == Some(&newpath) {
+				let index = articles.iter().rev().map(|(path, title, author, date)|
+						format!("<li class=\"article-entry\"><a href=\"/{}\">{title}</a><small class=\"author\">by {author}</small><small class=\"date\">{date}</small></li>",
+							path.iter().skip(1).collect::<PathBuf>().display()))
+					.map(Value::String)
+					.collect::<Vec<_>>();
+
+				tags.insert(String::from("article-index"), Value::Array(index));
+
+				let (tags, rest) = this.resolve_template((tags.clone(), &body), &template);
+				let body = tags.replace_tags_from(&rest);
+
+				mkfile(&dst.join(ARTICLE_DIR).join("index.html"), body.as_bytes()).unwrap();
+			}
+
 			if article_paths.contains(&newpath) {
-				tags.insert(String::from("article-index"), Value::Array(article_index.clone()));
+				let index = articles.iter().rev().map(|(path, title, author, date)| match &newpath == path {
+						true  => format!("<li class=\"article-entry\">{title}<small class=\"author\">by {author}</small><small class=\"date\">{date}</small></li>"),
+						false => format!("<li class=\"article-entry\"><a href=\"/{}\">{title}</a><small class=\"author\">by {author}</small><small class=\"date\">{date}</small></li>",
+							path.iter().skip(1).collect::<PathBuf>().display()),
+					})
+					.map(Value::String)
+					.collect::<Vec<_>>();
+
+				tags.insert(String::from("article-index"), Value::Array(index));
 			}
 
 			let (tags, rest) = this.resolve_template((tags, &body), &template);
 			let body = tags.replace_tags_from(&rest);
-
-			if article_paths.last() == Some(&newpath) {
-				mkfile(&dst.join(ARTICLE_DIR).join("index.html"), body.as_bytes()).unwrap();
-			}
 
 			mkfile(&newpath, body.as_bytes()).unwrap()
 		});

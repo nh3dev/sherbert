@@ -152,11 +152,30 @@ code > pre {
 	padding: 0;
 }
 
-.tag-date {
-	font-size: calc(var(--normal-size) - 0.28rem);
-	font-weight: 400;
+.allposts {
+	padding-inline-start: calc(var(--indent) + 1rem);
+	list-style-type: none;
+}
+
+.allposts li {
+	justify-content: space-between;
+	white-space: nowrap;
+}
+
+.allposts li a {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.allposts li .author {
 	color: var(--colour6);
 	margin-left: 0.5em;
+}
+
+.allposts li .date {
+	color: var(--colour6);
+	margin-left: 0.5em;
+	float: right;
 }
 
 footer {
@@ -168,16 +187,6 @@ footer {
 	width: 100%;
 }
 
-.allposts li {
-	display: flex;
-	align-items: flex-end;
-	justify-content: space-between;
-	white-space: nowrap;
-}
-.allposts li a {
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
 
 /* navbar stuff */
 nav {
@@ -256,15 +265,15 @@ nav a:hover, .dropdown:hover button {
 }
 
 @media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-    }
-    nav * {
-        width: 100%;
-    }
-    nav > :last-child {
-        margin-left: 0;
-    }
+	nav {
+		flex-direction: column;
+	}
+	nav * {
+		width: 100%;
+	}
+	nav > :last-child {
+		margin-left: 0;
+	}
 }
 
 /* blog */
@@ -304,6 +313,7 @@ nav a:hover, .dropdown:hover button {
 }
 
 .preview {
+	color: var(--color3);
 	visibility: hidden;
 	opacity: 0;
 	transition: opacity 0.2s ease, visibility 0.2s ease;
@@ -316,7 +326,7 @@ nav a:hover, .dropdown:hover button {
 	left: 0;
 	top: -0.2em;
 	padding: 0.4em;
-	min-width: 30%;
+	min-width: 30vw;
 }
 
 .footnote:hover .preview {
