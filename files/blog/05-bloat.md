@@ -4,11 +4,10 @@ author = "Nick Borș"
 date = "27-06-2026"
 ---
 
-## TL;DR
-
 <summary>
 
-Make websites the old way -- regardless of if you are an
+> ### TL;DR
+> Make websites the old way -- regardless of if you are an
 individual or not -- and respect users time, privacy, and resources.
 You can check your performance and page weight at [Cloudflare's
 scanning service](https://radar.cloudflare.com/scan/) under the
@@ -172,9 +171,7 @@ and others you can easily find. This is just what I read.
 [^4]: Deloitte's _Milliseconds make Millions_
 [PDF](https://www.deloitte.com/content/dam/assets-zone2/ie/en/docs/services/consulting/2023/Milliseconds_Make_Millions_report.pdf)
 
-<br>
-
-### Cool further reading/practical advice
+## Cool further reading/practical advice
 - Page weight based clubs (self explanatory):
   - [250KB.club](https://250kb.club)
   - [512KB.club](https://512kb.club)
