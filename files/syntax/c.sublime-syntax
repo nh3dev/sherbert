@@ -1,0 +1,86 @@
+%YAML 1.2
+---
+name: c
+file_extensions: [c, h]
+scope: source.c
+
+contexts:
+  main:
+    - match: '\b(return|break|continue|goto|if|else|switch|case|default|while|do|for)\b'
+      scope: keyword.control
+
+    - match: //.*$
+      scope: comment
+
+    - match: '\/\*'
+      push: comment_block
+
+    - match: '\b(const|volatile|restrict|inline|extern|static|register|auto|typedef|struct|union|enum|sizeof)\b'
+      scope: keyword.other
+
+    - match: '\{|\}|\(|\)'
+      scope: syntax.separator
+
+    - match: '\*|\/|%|-|\+|<|>|='
+      scope: op.arithmetic
+
+    - match: '>>|<<|~|&|\||\^'
+      scope: op.bitwise
+
+    - match: '!=|==|<=|>=|&&|\|\||!'
+      scope: op.logic
+
+    - match: '&|\*'
+      scope: op.ref
+
+    - match: '\b\?\b|:'
+      scope: op.special
+
+    - match: ';'
+      scope: syntax.separator
+
+    - match: '\b(void|char|short|int|long|float|double|signed|unsigned|_Bool|_Complex|_Imaginary)\b'
+      scope: entity.type
+
+    - match: '\b(size_t|ssize_t|ptrdiff_t|intptr_t|uintptr_t|int8_t|int16_t|int32_t|int64_t|uint8_t|uint16_t|uint32_t|uint64_t)\b'
+      scope: entity.type.typedef
+
+    - match: '\[|\]'
+      scope: op.brackets
+
+    - match: '^\s*#\s*(include|define|undef|ifdef|ifndef|if|else|elif|endif|error|pragma)\b'
+      scope: keyword.control.import
+
+    - match: '\b([a-zA-Z_]\w*)(?=\s*\()'
+      scope: entity.function
+
+    - match: \b[0-9]+\.[0-9]+([fF]|[lL])?\b
+      scope: literal.float
+
+    - match: '\b(0[xX][0-9a-fA-F]+|0[0-7]+|[0-9]+)([uU]?[lL]{0,2}|[lL]{0,2}[uU]?)?\b'
+      scope: literal.integer
+
+    - match: "'"
+      push: char
+
+    - match: '"'
+      push: string
+
+  comment_block:
+    - meta_scope: comment
+    - match: '\*\/'
+      pop: true
+
+  string:
+    - meta_scope: literal.string
+    - match: '\\.'
+      scope: constant.character.escape
+    - match: '"'
+      pop: true
+
+  char:
+    - meta_scope: literal.char
+    - match: '\\.'
+      scope: constant.character.escape
+    - match: "'"
+      pop: true
